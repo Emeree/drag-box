@@ -1,9 +1,12 @@
 body {
-  background: darkgray;
-  color: gray;
+  background-color: #7ee8fa;
+  background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
   font-size: 2em;
+  text-align: center;
 }
 #myCanvas {
-  background: lightgray;
-  border: solid 1px gray;
+  background: #ffffff;
+  border: solid 2px #7ee8fa;
 }
