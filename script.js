@@ -75,7 +75,7 @@ function draw() {
   caption.innerHTML = math.round(box.x) + ", " + math.round(box.y);
 
   // if the box is not being dragged
-  if (!boxDrag) {
+  if (!boxDrag || box.y == -box.size) {
     // gravity
     box.x += box.velX;
     box.y += box.fall * box.grav + box.velY;
