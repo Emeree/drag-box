@@ -1,7 +1,13 @@
-// dom variables
+// document variables
 var caption = document.getElementById("myCaption");
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+
+canvas.width = math.round(window.innerWidth * .99);
+canvas.height = math.round(window.innerHeight * .87);
+
+caption.width = math.round(window.innerWidth * .99);
+caption.height = math.round(window.innerHeight * .5);
 
 // globals
 var boxDrag = false;
@@ -10,19 +16,19 @@ var mouseY;
 var preMouseX; // previous mouseX
 var preMouseY; // previous mouseY
 var gravityInc = 1.05; // gravity increase
-var velocityDec = .95; // velocity decay
+var velocityDec = .99; // velocity decay
 
 // objects
 var box = {
-  x      : 10,
-  y      : 10,
-  difX   : 0, // difference between mouseX and box.x
-  difY   : 0, // difference between mouseY and box.y
-  size   : 50,
-  fall   : 3,
-  grav   : 1,
-  velX   : 0, // x velocity
-  velY   : 0, // Y velocity
+  x   : 10,
+  y   : 10,
+  difX: 0, // difference between mouseX and box.x
+  difY: 0, // difference between mouseY and box.y
+  size: 75,
+  fall: 3,
+  grav: 1,
+  velX: 0, // x velocity
+  velY: 0, // Y velocity
 };
 
 // event listeners
@@ -58,7 +64,7 @@ function mouseUpHandler() {
 function drawRect() {
   ctx.beginPath();
   ctx.rect(box.x, box.y, box.size, box.size);
-  ctx.fillStyle = "gray";
+  ctx.fillStyle = "#7ee8fa";
   ctx.fill();
 }
 
@@ -66,14 +72,14 @@ function draw() {
   // clear and redraw objects onto canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawRect();
-  caption.innerHTML = box.x + ", " + box.y;
+  caption.innerHTML = math.round(box.x) + ", " + math.round(box.y);
 
   // if the box is not being dragged
   if (!boxDrag) {
     // gravity
     box.x += box.velX;
     box.y += box.fall * box.grav + box.velY;
-    box.grav *= gravityInc; 
+    box.grav *= gravityInc;
     box.velX *= velocityDec;
     box.velY *= velocityDec;
 
