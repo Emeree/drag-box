@@ -89,16 +89,15 @@ function draw() {
     box.velY *= velocityDec;
 
     // wraparound
-    if (box.y > canvas.height) {
+    if (box.y >= canvas.height) {
       box.y = 0 - box.size;
     }
     else if (box.y + box.size >= canvas.height) {
       box.y = canvas.height - box.size;
       box.grav = 1;
     }
-
-    if (box.x > canvas.width) {
-      box.x = 0;
+    if (box.x >= canvas.width) {
+      box.x = 0 - box.size;
     }
     else if (box.x <= 0 - box.size) {
       box.x = canvas.width;
