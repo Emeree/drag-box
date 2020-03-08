@@ -20,15 +20,16 @@ var velocityDec = .99; // velocity decay
 
 // objects
 var box = {
-  x   : 10,
-  y   : 10,
-  difX: 0, // difference between mouseX and box.x
-  difY: 0, // difference between mouseY and box.y
-  size: 75,
-  fall: 3,
-  grav: 1,
-  velX: 0, // x velocity
-  velY: 0, // Y velocity
+  x    : 10,
+  y    : 10,
+  difX : 0, // difference between mouseX and box.x
+  difY : 0, // difference between mouseY and box.y
+  size : 75,
+  fall : 3,
+  grav : 1,
+  velX : 0, // x velocity
+  velY : 0, // Y velocity
+  color: "#ffffff", // color 
 };
 
 // event listeners
@@ -64,7 +65,7 @@ function mouseUpHandler() {
 function drawRect() {
   ctx.beginPath();
   ctx.rect(box.x, box.y, box.size, box.size);
-  ctx.fillStyle = "#7ee8fa";
+  ctx.fillStyle = box.color;
   ctx.fill();
 }
 
