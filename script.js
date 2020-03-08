@@ -79,7 +79,12 @@ function draw() {
     // gravity
     box.x += box.velX;
     box.y += (box.fall * box.grav) + box.velY;
-    box.grav *= gravityInc;
+    if ((box.grav * box.fall) + box.velY > canvas.height + box.size) {
+      box.grav /= gravityInc ^ 2;
+    }
+    else {
+      box.grav *= gravityInc;
+    }
     box.velX *= velocityDec;
     box.velY *= velocityDec;
 
