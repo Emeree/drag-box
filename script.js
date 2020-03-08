@@ -1,6 +1,6 @@
 // document variables
-var caption = document.getElementById("myCaption");
-var canvas = document.getElementById("myCanvas");
+var caption = document.getElementById("caption");
+var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 canvas.width = math.round(window.innerWidth * .99);
