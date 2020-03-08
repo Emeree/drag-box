@@ -11,7 +11,7 @@ body {
   padding: 10px;
   overflow: hidden;
 }
-#myCanvas {
+#canvas {
   background: #ffffff;
   border: solid 2px #7ee8fa;
 }
