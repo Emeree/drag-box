@@ -46,9 +46,9 @@ function mouseMoveHandler() {
 
 function mouseDownHandler() {
   if ((box.x < mouseX && mouseX < box.x + box.size) && (box.y < mouseY && mouseY < box.y + box.size)) {
-    boxDrag = true;
     box.difX = mouseX - box.x;
     box.difY = mouseY - box.y;
+    boxDrag = true;
   }
 }
 
@@ -75,10 +75,10 @@ function draw() {
   caption.innerHTML = math.round(box.x) + ", " + math.round(box.y);
 
   // if the box is not being dragged
-  if (!boxDrag || box.y == -box.size) {
+  if (!boxDrag) {
     // gravity
     box.x += box.velX;
-    box.y += box.fall * box.grav + box.velY;
+    box.y += (box.fall * box.grav) + box.velY;
     box.grav *= gravityInc;
     box.velX *= velocityDec;
     box.velY *= velocityDec;
