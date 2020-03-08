@@ -12,6 +12,7 @@ body {
   overflow: hidden;
 }
 #canvas {
-  background: #ffffff;
-  border: solid 2px #7ee8fa;
+  background: #000000;
+  border: solid 2px #ffffff;
+  opacity: 0.5;
 }
