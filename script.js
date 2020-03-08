@@ -100,8 +100,8 @@ function draw() {
     if (box.x > canvas.width) {
       box.x = 0;
     }
-    else if (box.x <= 0) {
-      box.x = canvas.width - box.size;
+    else if (box.x <= 0 - box.size) {
+      box.x = canvas.width;
     }
   }
 
