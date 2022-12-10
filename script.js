@@ -15,6 +15,8 @@ var mouseX;
 var mouseY;
 var preMouseX; // previous mouseX
 var preMouseY; // previous mouseY
+var drawTime = 1;
+var drawProportion = (0.6 + drawTime / 24) * .5;//drawTime / 1.75;
 
 // objects
 var box = {
@@ -69,6 +71,7 @@ function drawRect() {
   ctx.fillStyle = box.color;
   ctx.fill();
 }
+
 function draw() {
   // clear and redraw objects onto canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,9 +82,9 @@ function draw() {
   if (!boxDrag) {
 
     // gravity
-    box.velY += box.grav;
-    box.x += box.velX;
-    box.y += box.velY;
+    box.velY += box.grav * drawProportion;
+    box.x += box.velX * drawProportion;
+    box.y += box.velY * drawProportion;
 
     if (box.y + box.size >= canvas.height) {
       box.y = canvas.height - box.size;
@@ -107,4 +110,4 @@ function draw() {
   }
 }
 
-var drawInterval = setInterval(draw, 10);
+var drawInterval = setInterval(draw, drawTime);
