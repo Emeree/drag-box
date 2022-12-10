@@ -15,8 +15,6 @@ var mouseX;
 var mouseY;
 var preMouseX; // previous mouseX
 var preMouseY; // previous mouseY
-var gravityInc = 1.05; // gravity increase
-var velocityDec = .99; // velocity decay
 
 // objects
 var box = {
@@ -25,8 +23,7 @@ var box = {
   difX : 0, // difference between mouseX and box.x
   difY : 0, // difference between mouseY and box.y
   size : 75,
-  fall : 3,
-  grav : 1,
+  grav : 1.5,
   velX : 0, // x velocity
   velY : 0, // Y velocity
   color: "#ffffff", // color 
@@ -59,6 +56,10 @@ function mouseUpHandler() {
     box.velY = mouseY - preMouseY;
   }
   boxDrag = false;
+
+  if (box.y + box.size >= canvas.height) {
+    box.y = 0 - box.size;//canvas.height - box.size;
+  }
 }
 
 // draw functions
@@ -68,7 +69,6 @@ function drawRect() {
   ctx.fillStyle = box.color;
   ctx.fill();
 }
-
 function draw() {
   // clear and redraw objects onto canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -77,32 +77,27 @@ function draw() {
 
   // if the box is not being dragged
   if (!boxDrag) {
+
     // gravity
+    box.velY += box.grav;
     box.x += box.velX;
-    box.y += (box.fall * box.grav) + box.velY;
-    if ((box.grav * box.fall) + box.velY > canvas.height + box.size) {
-      box.grav /= gravityInc ^ 2;
+    box.y += box.velY;
+
+    if (box.y + box.size >= canvas.height) {
+      box.y = canvas.height - box.size;
+      box.velY = box.velY * -1 * 0.75;
+      box.velX *= .9;
     }
-    else {
-      box.grav *= gravityInc;
-    }
-    box.velX *= velocityDec;
-    box.velY *= velocityDec;
+
 
     // wraparound
-    if (box.y >= canvas.height) {
-      box.y = 0 - box.size;
-    }
-    else if (box.y + box.size >= canvas.height) {
-      box.y = canvas.height - box.size;
-      box.grav = 1;
-    }
     if (box.x >= canvas.width) {
       box.x = 0 - box.size;
     }
     else if (box.x <= 0 - box.size) {
       box.x = canvas.width;
     }
+    
   }
 
   // if the box is being dragged
